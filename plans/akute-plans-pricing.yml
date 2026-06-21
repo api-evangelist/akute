@@ -1,0 +1,135 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Akute Health
+providerId: akute
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- EHR
+- EMR
+- FHIR
+- Digital Health
+- Telehealth
+- Plans
+description: >-
+  Akute Health is sold per active patient per month with a monthly minimum,
+  on a "pay as you grow" model. Published tiers are Startup ($0.50 per active
+  patient/month, $50/month minimum) and Growth ($0.75 per active patient/month,
+  $200/month minimum), with a custom Enterprise tier. API and developer access
+  (REST API, webhooks) is gated to higher tiers and is sales-led; pricing for
+  API access is not publicly listed and must be confirmed with Akute. Add-ons
+  include extra prescribers and EPCS providers. Because the API tier is
+  negotiated, these figures are not reconciled.
+notes: >-
+  Per-patient prices and tier inclusions are from the public pricing page and
+  third-party listings and may change; confirm API access eligibility and final
+  pricing directly with Akute sales during reconciliation.
+sources:
+- https://www.akutehealth.com/pricing
+- https://help.akutehealth.com/article/180-setting-up-your-api-key
+- https://developer.akutehealth.com/
+plans:
+- id: akute-startup
+  name: Startup
+  type: usage
+  description: >-
+    Core EHR for new or small practices billed per active patient with a
+    monthly minimum. Includes charting, scheduling, patient portal,
+    telemedicine, and e-prescribing.
+  entries:
+  - label: Active Patients
+    name: active_patients
+    type: usage
+    metric: patients
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.50 per active patient / month ($50/month minimum)
+    userMultiplied: false
+  elements:
+  - name: Charting
+  - name: Scheduling
+  - name: Patient Portal
+  - name: Telemedicine
+  - name: e-Prescribing
+- id: akute-growth
+  name: Growth
+  type: usage
+  description: >-
+    Scaling practices billed per active patient with a higher monthly minimum.
+  entries:
+  - label: Active Patients
+    name: active_patients
+    type: usage
+    metric: patients
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.75 per active patient / month ($200/month minimum)
+    userMultiplied: false
+  elements:
+  - name: Charting
+  - name: Scheduling
+  - name: Patient Portal
+  - name: Telemedicine
+  - name: e-Prescribing
+- id: akute-addons
+  name: Add-ons
+  type: usage
+  description: >-
+    Optional per-provider add-ons that do not count toward per-patient spend.
+  entries:
+  - label: Additional Prescriber
+    name: extra_prescriber
+    type: flat
+    metric: providers
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $50 per prescriber / month
+    userMultiplied: true
+  - label: EPCS Provider
+    name: epcs_provider
+    type: flat
+    metric: providers
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $15 per EPCS provider / month
+    userMultiplied: true
+  elements:
+  - name: Additional Prescribers
+  - name: EPCS (Controlled Substance e-Prescribing)
+- id: akute-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom-priced tier for larger organizations and digital health builders.
+    Includes REST API and webhook access, custom integrations, and negotiated
+    terms. Contact Akute sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: REST API Access
+  - name: Webhooks
+  - name: Custom Integrations
+  - name: Custom Volume Pricing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

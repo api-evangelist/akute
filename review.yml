@@ -1,0 +1,93 @@
+aid: akute
+name: Akute Health
+review:
+  question: Does Akute Health expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Akute's only asynchronous surface is
+    HTTP webhooks (server-to-client callbacks), which are modeled as REST
+    endpoints in the OpenAPI document plus a documented signed-delivery
+    scheme. No streaming, SSE, or WebSocket transport is documented.
+findings:
+  summary: |
+    Akute Health does not publish a documented public WebSocket API. The
+    Customer API is a REST (HTTPS) interface under
+    https://api.akutehealth.com/v1 (staging at
+    https://api.staging.akutehealth.com/v1), authenticated with an API key
+    in the X-API-Key header. Asynchronous event delivery is provided via
+    HTTP webhooks: customers register endpoint destinations and Akute POSTs
+    resource events, signing each payload with HMAC-SHA256 in the
+    x-akute-signature header (timestamp t= and signature v1=). Webhooks are
+    one-way HTTP callbacks, not WebSocket. No realtime, bidirectional, or
+    streaming (ws:// or wss://) endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.akutehealth.com/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Server-to-client HTTP callbacks signed with HMAC-SHA256 via x-akute-signature. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Akute's developer portal or knowledge base as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.akutehealth.com/v1/patients
+    - GET    https://api.akutehealth.com/v1/patients/{patient_id}
+    - POST   https://api.akutehealth.com/v1/appointments
+    - GET    https://api.akutehealth.com/v1/appointments
+    - POST   https://api.akutehealth.com/v1/notes
+    - GET    https://api.akutehealth.com/v1/notes/{note_id}
+    - POST   https://api.akutehealth.com/v1/tasks
+    - GET    https://api.akutehealth.com/v1/tasks/{task_id}
+    - POST   https://api.akutehealth.com/v1/documents
+    - GET    https://api.akutehealth.com/v1/documents/{document_id}
+    - GET    https://api.akutehealth.com/v1/medications
+    - GET    https://api.akutehealth.com/v1/medications/history
+    - POST   https://api.akutehealth.com/v1/orders
+    - GET    https://api.akutehealth.com/v1/diagnosticreport/{diagnostic_report_id}
+    - GET    https://api.akutehealth.com/v1/observations/{observation_id}
+    - GET    https://api.akutehealth.com/v1/webhooks/{webhook_id}
+    - POST   https://api.akutehealth.com/v1/webhooks/{webhook_id}
+  webhookResources:
+    - patients (create, update)
+    - appointments (create, update)
+    - notes (create, update)
+    - tasks (create, update)
+    - medications (update)
+    - medicationPriorAuths (update)
+    - surescriptsMedicationHistory (request)
+    - diagnosticReports (create, update)
+    - orderRequests (update)
+    - orders (create)
+    - faxes (create, update)
+    - conversation (create)
+    - conversationMessage (create)
+sources:
+  - url: https://developer.akutehealth.com/
+    type: Documentation
+    note: Customer API documentation lists base URLs https://api.akutehealth.com/v1 and staging; auth via X-API-Key header. All endpoints HTTPS REST.
+  - url: https://help.akutehealth.com/article/180-setting-up-your-api-key
+    type: Documentation
+    note: API key creation on Settings -> Developer; no WebSocket mentioned.
+  - url: https://help.akutehealth.com/article/212-supported-webhooks
+    type: Documentation
+    note: Lists supported webhook resources/events; webhooks are HTTP callbacks, not WebSocket.
+  - url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+    type: Documentation
+    note: Lab ordering REST endpoints; documents a 5-concurrent-request limit.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Akute's asynchronous surface is HTTP
+    webhooks, captured in the OpenAPI document and described in the review with
+    its HMAC-SHA256 signing scheme so it is never misrepresented as WebSocket.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

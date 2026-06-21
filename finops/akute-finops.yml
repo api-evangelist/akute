@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Akute Health
+providerId: akute
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- EHR
+- EMR
+- FHIR
+- Digital Health
+- Telehealth
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Akute Health spend. Akute bills primarily per active patient
+  per month against a monthly minimum, plus flat per-provider add-ons for
+  additional prescribers and EPCS. REST API and webhook access are part of
+  higher, sales-led (Enterprise) agreements rather than separately metered
+  per-call charges. Exact API-tier pricing is negotiated and not public, so
+  cost figures here are not reconciled.
+notes: >-
+  Per-patient rates and add-on fees are from the public pricing page and may
+  change; API-access pricing is sales-led. Verify against an Akute quote during
+  reconciliation.
+sources:
+- https://www.akutehealth.com/pricing
+- https://developer.akutehealth.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Akute Health
+serviceCategory: Healthcare
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Akute Health EHR
+  ServiceCategory: Healthcare
+  ProviderName: Akute Health
+  PublisherName: Akute Health
+  InvoiceIssuerName: Akute Health
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription
+meters:
+- name: active_patients
+  description: Active patients in the account, billed per patient per month against a monthly minimum.
+  unit: patients
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: prescribers
+  description: Additional prescriber seats billed at a flat monthly rate per provider.
+  unit: providers
+  aggregation: sum
+  dimensions:
+  - account
+- name: epcs_providers
+  description: EPCS (controlled-substance e-prescribing) providers billed at a flat monthly rate.
+  unit: providers
+  aggregation: sum
+  dimensions:
+  - account
+- name: api_access
+  description: REST API and webhook access bundled into the negotiated Enterprise agreement (not per-call metered publicly).
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track active-patient counts and provider seats against the monthly minimum to understand effective unit cost.
+- name: Allocation
+  description: Map active patients and provider seats to programs, clinics, or cost centers.
+- name: Optimization
+  description: Right-size the plan tier and minimum to actual active-patient volume; deactivate inactive patients; consolidate prescriber seats.
+- name: Accountability
+  description: Assign owners per clinic/program and review monthly active-patient spend and add-on seats against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

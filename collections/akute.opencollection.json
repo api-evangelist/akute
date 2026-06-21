@@ -1,0 +1,584 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Akute Health Customer API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/patients",
+            "body": {
+              "type": "json",
+              "data": "{\"first_name\": \"Jane\", \"last_name\": \"Doe\", \"date_of_birth\": \"1990-01-01\", \"sex\": \"female\", \"status\": \"active\", \"email\": \"jane@test.com\", \"primary_phone_number\": \"5555005000\", \"primary_phone_type\": \"mobile\", \"external_id\": \"ext-123\"}"
+            }
+          },
+          "docs": "Create a patient"
+        },
+        {
+          "info": {
+            "name": "Update a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.akutehealth.com/v1/patients/{{patient_id}}",
+            "body": {
+              "type": "json",
+              "data": "{\"first_name\": \"Jane\", \"last_name\": \"Doe\", \"status\": \"active\"}"
+            }
+          },
+          "docs": "Update a patient"
+        },
+        {
+          "info": {
+            "name": "Get a patient by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/patients/{{patient_id}}"
+          },
+          "docs": "Get a patient by id"
+        },
+        {
+          "info": {
+            "name": "Search patients by external id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/patients?external_id={{external_patient_id}}"
+          },
+          "docs": "Search patients by external id"
+        },
+        {
+          "info": {
+            "name": "Get a patient's external ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/patients/{{patient_id}}/external_ids"
+          },
+          "docs": "Get a patient's external ids"
+        },
+        {
+          "info": {
+            "name": "Search patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/patients?first_name=abig&last_name=hack&date_of_birth=1990-01-01&status=active&limit=100&offset=0"
+          },
+          "docs": "Search patients"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Appointments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/appointments",
+            "body": {
+              "type": "json",
+              "data": "{\"patient_id\": \"{{patient_id}}\", \"practitioner_user_id\": \"{{user_id}}\", \"start_time\": \"2024-01-31T00:00:00\", \"end_time\": \"2024-01-31T00:30:00\", \"status\": \"booked\"}"
+            }
+          },
+          "docs": "Create an appointment"
+        },
+        {
+          "info": {
+            "name": "Update an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.akutehealth.com/v1/appointments/{{appointment_id}}",
+            "body": {
+              "type": "json",
+              "data": "{\"status\": \"fulfilled\"}"
+            }
+          },
+          "docs": "Update an appointment"
+        },
+        {
+          "info": {
+            "name": "Get an appointment by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/appointments/{{appointment_id}}"
+          },
+          "docs": "Get an appointment by id"
+        },
+        {
+          "info": {
+            "name": "Search appointments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/appointments?patient_id={{patient_id}}&practitioner_user_id={{user_id}}&status=booked"
+          },
+          "docs": "Search appointments"
+        },
+        {
+          "info": {
+            "name": "List appointment types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/appointment_types"
+          },
+          "docs": "List appointment types"
+        },
+        {
+          "info": {
+            "name": "Cancel/delete an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.akutehealth.com/v1/appointments/{{appointment_id}}"
+          },
+          "docs": "Cancel/delete an appointment"
+        },
+        {
+          "info": {
+            "name": "Get practitioner availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/availability?user_id={{user_id}}&start_time=2021-12-19T00:00:00-06:00&end_time=2021-12-24T00:00:00-06:00"
+          },
+          "docs": "Get practitioner availability"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Encounters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a clinical note (encounter)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/notes",
+            "body": {
+              "type": "json",
+              "data": "{\"type\": \"Progress note\", \"patient_id\": \"{{patient_id}}\", \"service_date\": \"2026-03-01\", \"status\": \"final\", \"signed\": {\"user_id\": \"{{user_id}}\"}, \"authors\": [{\"user_id\": \"{{user_id}}\"}], \"sections\": [{\"title\": \"Subjective\", \"text\": \"CC:\"}]}"
+            }
+          },
+          "docs": "Create a clinical note (encounter)"
+        },
+        {
+          "info": {
+            "name": "Get a clinical note by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/notes/{{note_id}}"
+          },
+          "docs": "Get a clinical note by id"
+        },
+        {
+          "info": {
+            "name": "Search clinical notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/notes?patient_id={{patient_id}}&status=final&service_date_start=2023-10-01&limit=2&offset=5"
+          },
+          "docs": "Search clinical notes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/tasks",
+            "body": {
+              "type": "json",
+              "data": "{\"task\": \"Ensure patient PA has been approved\", \"description\": \"<div>PA: 12345</div>\", \"due_date\": \"2023-05-01\", \"owner_id\": \"{{user_id}}\", \"patient_id\": \"{{patient_id}}\", \"priority\": \"p2\", \"status\": \"not-started\", \"tags\": [\"PA\"]}"
+            }
+          },
+          "docs": "Create a task"
+        },
+        {
+          "info": {
+            "name": "Update a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.akutehealth.com/v1/tasks/{{task_id}}",
+            "body": {
+              "type": "json",
+              "data": "{\"status\": \"in-progress\"}"
+            }
+          },
+          "docs": "Update a task"
+        },
+        {
+          "info": {
+            "name": "Get a task by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/tasks/{{task_id}}"
+          },
+          "docs": "Get a task by id"
+        },
+        {
+          "info": {
+            "name": "Search tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/tasks?patient_id={{patient_id}}&owner_id={{user_id}}&priority=p1&due_date=2021-12-17&archived=false&limit=100&offset=0"
+          },
+          "docs": "Search tasks"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/documents",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload a document"
+        },
+        {
+          "info": {
+            "name": "Get a document by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/documents/{{document_id}}"
+          },
+          "docs": "Get a document by id"
+        },
+        {
+          "info": {
+            "name": "Search documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/documents?patient_id={{patient_id}}&limit=10&offset=0&sort=created_at:asc"
+          },
+          "docs": "Search documents"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Medications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List patient medications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications?patient_id={{patient_id}}&start_date=2023-12-01&end_date=2023-12-05"
+          },
+          "docs": "List patient medications"
+        },
+        {
+          "info": {
+            "name": "Search the drug catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications?search_term=Amox"
+          },
+          "docs": "Search the drug catalog"
+        },
+        {
+          "info": {
+            "name": "Look up a dispensable drug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications/select?dispensable_drug_id=23647"
+          },
+          "docs": "Look up a dispensable drug"
+        },
+        {
+          "info": {
+            "name": "Retrieve Surescripts medication history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications/history?patient_id={{patient_id}}&prescriber_user_id={{user_id}}"
+          },
+          "docs": "Retrieve Surescripts medication history"
+        },
+        {
+          "info": {
+            "name": "Retrieve cached medication history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications/history/cached?patient_id={{patient_id}}"
+          },
+          "docs": "Retrieve cached medication history"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Labs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search lab procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/procedures?query=c&performer_organization_id={{performer_organization_id}}&limit=10&offset=0"
+          },
+          "docs": "Search lab procedures"
+        },
+        {
+          "info": {
+            "name": "Search lab facilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/facilities?name=labcorp&distance=20&zipcode=78754&limit=10"
+          },
+          "docs": "Search lab facilities"
+        },
+        {
+          "info": {
+            "name": "Create a lab order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/orders",
+            "body": {
+              "type": "json",
+              "data": "{\"patient_id\": \"{{patient_id}}\", \"procedures\": [\"{{procedure_id}}\"], \"billing_type\": \"insurance\", \"performer_organization_id\": \"{{performer_organization_id}}\", \"diagnoses\": [\"R51\"]}"
+            }
+          },
+          "docs": "Create a lab order"
+        },
+        {
+          "info": {
+            "name": "Get a lab order by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/orders/{{order_id}}"
+          },
+          "docs": "Get a lab order by id"
+        },
+        {
+          "info": {
+            "name": "Get a lab order request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/orders/requests/{{order_request_id}}"
+          },
+          "docs": "Get a lab order request status"
+        },
+        {
+          "info": {
+            "name": "Get a lab order requisition PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/orders/{{order_id}}/pdf"
+          },
+          "docs": "Get a lab order requisition PDF"
+        },
+        {
+          "info": {
+            "name": "Search diagnostic reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/diagnosticreport?patient_id={{patient_id}}&order_id={{order_id}}&limit=10&offset=0"
+          },
+          "docs": "Search diagnostic reports"
+        },
+        {
+          "info": {
+            "name": "Get a diagnostic report by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/diagnosticreport/{{diagnostic_report_id}}"
+          },
+          "docs": "Get a diagnostic report by id"
+        },
+        {
+          "info": {
+            "name": "Get a diagnostic report PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/diagnosticreport/{{diagnostic_report_id}}/pdf"
+          },
+          "docs": "Get a diagnostic report PDF"
+        },
+        {
+          "info": {
+            "name": "Search observations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/observations?category=laboratory&patient_id={{patient_id}}&diagnostic_report_id={{diagnostic_report_id}}"
+          },
+          "docs": "Search observations"
+        },
+        {
+          "info": {
+            "name": "Get an observation by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/observations/{{observation_id}}"
+          },
+          "docs": "Get an observation by id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/webhooks?start_time={{start_time}}&end_time={{end_time}}"
+          },
+          "docs": "List webhook subscriptions"
+        },
+        {
+          "info": {
+            "name": "Get a webhook subscription by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/webhooks/{{webhook_id}}"
+          },
+          "docs": "Get a webhook subscription by id"
+        },
+        {
+          "info": {
+            "name": "Update a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/webhooks/{{webhook_id}}",
+            "body": {
+              "type": "json",
+              "data": "{\"resource\": \"patients\", \"event\": \"update\", \"destination\": \"https://example.com/hook\", \"secret\": \"{{webhook_secret}}\"}"
+            }
+          },
+          "docs": "Update a webhook subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

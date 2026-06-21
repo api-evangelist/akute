@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Akute Health
+providerId: akute
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- EHR
+- EMR
+- FHIR
+- Digital Health
+- Telehealth
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Akute Health API applies a per-tenant concurrency limit on API requests.
+  Lab ordering documentation states a limit of 5 concurrent API requests per
+  client. Other per-endpoint or per-minute quotas are not publicly documented
+  and are not reconciled in this artifact; confirm current limits with Akute.
+notes: >-
+  Only the documented 5-concurrent-request limit (from the lab ordering guide)
+  is captured here. Verify additional throttling, burst, and per-endpoint
+  limits with Akute support on reconciliation.
+sources:
+- https://help.akutehealth.com/article/196-ordering-labs-via-api
+- https://developer.akutehealth.com/
+responseCodes:
+  throttled: 429
+limits:
+- name: Concurrent Requests
+  scope: account
+  metric: concurrent_requests
+  limit: 5
+  notes: Documented for the lab ordering API; per-tenant concurrent API requests.
+- name: Per-Endpoint Quotas
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Additional per-endpoint or per-minute limits are not publicly documented.
+policies:
+- name: Concurrency Cap
+  description: Limit in-flight requests to the documented concurrency ceiling to avoid throttling.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
