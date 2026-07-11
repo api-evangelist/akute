@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/akute-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API key created on the Settings -> Developer page in Akute. Required on every
+    request.
+  sources:
+  - openapi/akute-openapi.yml

@@ -161,6 +161,10 @@ apis:
     orders, faxes, conversations) with HMAC-SHA256 signed delivery via the
     x-akute-signature header.
 common:
+- type: DomainSecurity
+  url: security/akute-domain-security.yml
+- type: Authentication
+  url: authentication/akute-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/akute-health-inc
 - type: LinkedIn
@@ -175,6 +179,8 @@ common:
   url: rate-limits/akute-rate-limits.yml
 - type: FinOps
   url: finops/akute-finops.yml
+- url: https://akutehealth.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
