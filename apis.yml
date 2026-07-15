@@ -161,6 +161,8 @@ apis:
     orders, faxes, conversations) with HMAC-SHA256 signed delivery via the
     x-akute-signature header.
 common:
+- type: AgenticAccess
+  url: agentic-access/akute-agentic-access.yml
 - type: DomainSecurity
   url: security/akute-domain-security.yml
 - type: Authentication
