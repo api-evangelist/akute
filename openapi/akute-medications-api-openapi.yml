@@ -1,0 +1,124 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments Medications API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Medications
+paths:
+  /medications:
+    get:
+      operationId: searchMedications
+      tags:
+      - Medications
+      summary: Search medications or list a patient's medications
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: search_term
+        in: query
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+  /medications/select:
+    get:
+      operationId: selectDispensableDrug
+      tags:
+      - Medications
+      summary: Look up a dispensable drug
+      parameters:
+      - name: dispensable_drug_id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /medications/history:
+    get:
+      operationId: getMedicationHistory
+      tags:
+      - Medications
+      summary: Retrieve Surescripts medication history
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: prescriber_user_id
+        in: query
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+  /medications/history/cached:
+    get:
+      operationId: getCachedMedicationHistory
+      tags:
+      - Medications
+      summary: Retrieve cached medication history
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.

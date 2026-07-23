@@ -1,0 +1,335 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments Labs API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Labs
+paths:
+  /procedures:
+    get:
+      operationId: searchProcedures
+      tags:
+      - Labs
+      summary: Search lab procedures
+      parameters:
+      - name: query
+        in: query
+        schema:
+          type: string
+      - name: performer_organization_id
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /facilities:
+    get:
+      operationId: searchFacilities
+      tags:
+      - Labs
+      summary: Search lab facilities
+      parameters:
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: zipcode
+        in: query
+        schema:
+          type: string
+      - name: distance
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /orders:
+    post:
+      operationId: createOrder
+      tags:
+      - Labs
+      summary: Create a lab order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        '202':
+          description: Accepted (pending)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+    get:
+      operationId: searchOrders
+      tags:
+      - Labs
+      summary: Search lab orders
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: authoring_user_id
+        in: query
+        schema:
+          type: string
+      - name: start_date_range
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+  /orders/{order_id}:
+    get:
+      operationId: getOrder
+      tags:
+      - Labs
+      summary: Get a lab order by id
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: OK
+  /orders/requests/{order_request_id}:
+    get:
+      operationId: getOrderRequest
+      tags:
+      - Labs
+      summary: Get a lab order request status
+      parameters:
+      - name: order_request_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /orders/{order_id}/pdf:
+    get:
+      operationId: getOrderPdf
+      tags:
+      - Labs
+      summary: Get a lab order requisition PDF
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /diagnosticreport:
+    get:
+      operationId: searchDiagnosticReports
+      tags:
+      - Labs
+      summary: Search diagnostic reports
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: order_id
+        in: query
+        schema:
+          type: string
+      - name: start_date_range
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /diagnosticreport/{diagnostic_report_id}:
+    get:
+      operationId: getDiagnosticReport
+      tags:
+      - Labs
+      summary: Get a diagnostic report by id
+      parameters:
+      - $ref: '#/components/parameters/DiagnosticReportId'
+      responses:
+        '200':
+          description: OK
+    put:
+      operationId: updateDiagnosticReport
+      tags:
+      - Labs
+      summary: Update a diagnostic report
+      parameters:
+      - $ref: '#/components/parameters/DiagnosticReportId'
+      responses:
+        '200':
+          description: OK
+  /diagnosticreport/{diagnostic_report_id}/pdf:
+    get:
+      operationId: getDiagnosticReportPdf
+      tags:
+      - Labs
+      summary: Get a diagnostic report PDF
+      parameters:
+      - $ref: '#/components/parameters/DiagnosticReportId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /observations:
+    get:
+      operationId: searchObservations
+      tags:
+      - Labs
+      summary: Search observations (lab results, vital signs)
+      parameters:
+      - name: category
+        in: query
+        schema:
+          type: string
+          enum:
+          - laboratory
+          - vital-signs
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: diagnostic_report_id
+        in: query
+        schema:
+          type: string
+      - name: order_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /observations/{observation_id}:
+    get:
+      operationId: getObservation
+      tags:
+      - Labs
+      summary: Get an observation by id
+      parameters:
+      - name: observation_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    DiagnosticReportId:
+      name: diagnostic_report_id
+      in: path
+      required: true
+      schema:
+        type: string
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    OrderCreate:
+      type: object
+      required:
+      - procedures
+      properties:
+        patient_id:
+          type: string
+        external_patient_id:
+          type: string
+        procedures:
+          type: array
+          items:
+            type: string
+        billing_type:
+          type: string
+        delivery_option:
+          type: string
+        ordering_user_id:
+          type: string
+        performer_organization_id:
+          type: string
+        account_number:
+          type: string
+        diagnoses:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.

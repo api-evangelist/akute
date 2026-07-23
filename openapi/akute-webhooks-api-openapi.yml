@@ -1,0 +1,114 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments Webhooks API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Webhooks
+paths:
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: List webhook subscriptions
+      parameters:
+      - name: start_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: end_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+  /webhooks/{webhook_id}:
+    get:
+      operationId: getWebhook
+      tags:
+      - Webhooks
+      summary: Get a webhook subscription by id
+      parameters:
+      - name: webhook_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    post:
+      operationId: updateWebhook
+      tags:
+      - Webhooks
+      summary: Update a webhook subscription
+      parameters:
+      - name: webhook_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        resource:
+          type: string
+          enum:
+          - patients
+          - appointments
+          - notes
+          - tasks
+          - medications
+          - medicationPriorAuths
+          - diagnosticReports
+          - orders
+          - orderRequests
+          - faxes
+          - conversations
+          - conversationMessages
+        event:
+          type: string
+          enum:
+          - create
+          - update
+          - request
+        destination:
+          type: string
+          format: uri
+        secret:
+          type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.

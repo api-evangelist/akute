@@ -1,0 +1,187 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Appointments
+paths:
+  /appointments:
+    post:
+      operationId: createAppointment
+      tags:
+      - Appointments
+      summary: Create an appointment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '201':
+          description: Created
+    get:
+      operationId: searchAppointments
+      tags:
+      - Appointments
+      summary: Search appointments
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: practitioner_user_id
+        in: query
+        schema:
+          type: string
+      - name: start_range
+        in: query
+        schema:
+          type: string
+      - name: end_range
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - booked
+          - fulfilled
+          - cancelled
+          - noshow
+      responses:
+        '200':
+          description: OK
+  /appointments/{appointment_id}:
+    get:
+      operationId: getAppointment
+      tags:
+      - Appointments
+      summary: Get an appointment by id
+      parameters:
+      - $ref: '#/components/parameters/AppointmentId'
+      responses:
+        '200':
+          description: OK
+    put:
+      operationId: updateAppointment
+      tags:
+      - Appointments
+      summary: Update an appointment
+      parameters:
+      - $ref: '#/components/parameters/AppointmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteAppointment
+      tags:
+      - Appointments
+      summary: Cancel/delete an appointment
+      parameters:
+      - $ref: '#/components/parameters/AppointmentId'
+      responses:
+        '200':
+          description: OK
+  /appointment_types:
+    get:
+      operationId: listAppointmentTypes
+      tags:
+      - Appointments
+      summary: List appointment types
+      responses:
+        '200':
+          description: OK
+  /availability:
+    get:
+      operationId: getAvailability
+      tags:
+      - Appointments
+      summary: Get practitioner availability
+      parameters:
+      - name: user_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: end_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    AppointmentId:
+      name: appointment_id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: string
+        patient_id:
+          type: string
+        external_patient_id:
+          type: string
+        practitioner_user_id:
+          type: string
+        appointment_type_id:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - booked
+          - fulfilled
+          - cancelled
+          - noshow
+        description:
+          type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.

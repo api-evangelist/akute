@@ -1,0 +1,140 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments Encounters API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Encounters
+paths:
+  /notes:
+    post:
+      operationId: createNote
+      tags:
+      - Encounters
+      summary: Create a clinical note (encounter)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        '201':
+          description: Created
+    get:
+      operationId: searchNotes
+      tags:
+      - Encounters
+      summary: Search clinical notes
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - preliminary
+          - final
+      - name: service_date_start
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /notes/{note_id}:
+    get:
+      operationId: getNote
+      tags:
+      - Encounters
+      summary: Get a clinical note by id
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Note:
+      type: object
+      required:
+      - type
+      - authors
+      - sections
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          description: Type of note (e.g. Progress note, Phone note).
+        patient_id:
+          type: string
+        external_patient_id:
+          type: string
+        service_date:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - preliminary
+          - final
+        signed:
+          type: object
+          properties:
+            user_id:
+              type: string
+        authors:
+          type: array
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              text:
+                type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.

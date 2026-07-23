@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments Documents API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Documents
+paths:
+  /documents:
+    post:
+      operationId: createDocument
+      tags:
+      - Documents
+      summary: Upload a document
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                patient_id:
+                  type: string
+      responses:
+        '201':
+          description: Created
+    get:
+      operationId: searchDocuments
+      tags:
+      - Documents
+      summary: Search documents
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: no_patient
+        in: query
+        schema:
+          type: boolean
+      - name: sort
+        in: query
+        schema:
+          type: string
+          example: created_at:asc
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /documents/{document_id}:
+    get:
+      operationId: getDocument
+      tags:
+      - Documents
+      summary: Get a document by id
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.

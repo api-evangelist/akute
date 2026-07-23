@@ -1,0 +1,274 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments Patients API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Patients
+paths:
+  /patients:
+    post:
+      operationId: createPatient
+      tags:
+      - Patients
+      summary: Create a patient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientCreate'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+    get:
+      operationId: searchPatients
+      tags:
+      - Patients
+      summary: Search patients
+      description: Search patients by demographics, contact details, or external_id. Returns a paginated list.
+      parameters:
+      - name: external_id
+        in: query
+        schema:
+          type: string
+      - name: first_name
+        in: query
+        schema:
+          type: string
+      - name: last_name
+        in: query
+        schema:
+          type: string
+      - name: middle_name
+        in: query
+        schema:
+          type: string
+      - name: date_of_birth
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: sex
+        in: query
+        schema:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+      - name: email
+        in: query
+        schema:
+          type: string
+          format: email
+      - name: primary_phone_number
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patient'
+  /patients/{patient_id}:
+    get:
+      operationId: getPatient
+      tags:
+      - Patients
+      summary: Get a patient by id
+      parameters:
+      - $ref: '#/components/parameters/PatientId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+    put:
+      operationId: updatePatient
+      tags:
+      - Patients
+      summary: Update a patient
+      parameters:
+      - $ref: '#/components/parameters/PatientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientCreate'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+  /patients/{patient_id}/external_ids:
+    get:
+      operationId: getPatientExternalIds
+      tags:
+      - Patients
+      summary: Get a patient's external ids
+      parameters:
+      - $ref: '#/components/parameters/PatientId'
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Patient:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        sex:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        email:
+          type: string
+          format: email
+        primary_phone_number:
+          type: string
+        primary_phone_type:
+          type: string
+          enum:
+          - mobile
+          - home
+          - work
+        address_line_1:
+          type: string
+        address_line_2:
+          type: string
+        address_city:
+          type: string
+        address_state:
+          type: string
+        address_zipcode:
+          type: string
+    PatientCreate:
+      type: object
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex
+      - status
+      properties:
+        external_id:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        sex:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        email:
+          type: string
+          format: email
+        primary_phone_number:
+          type: string
+        primary_phone_type:
+          type: string
+          enum:
+          - mobile
+          - home
+          - work
+        address_line_1:
+          type: string
+        address_line_2:
+          type: string
+        address_city:
+          type: string
+        address_state:
+          type: string
+        address_zipcode:
+          type: string
+  parameters:
+    PatientId:
+      name: patient_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.

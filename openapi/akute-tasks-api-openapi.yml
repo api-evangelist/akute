@@ -1,0 +1,168 @@
+openapi: 3.0.1
+info:
+  title: Akute Health Customer Appointments Tasks API
+  description: REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.
+  termsOfService: https://www.akutehealth.com/
+  contact:
+    name: Akute Health Support
+    email: support@akutehealth.com
+    url: https://developer.akutehealth.com/
+  version: '1.0'
+servers:
+- url: https://api.akutehealth.com/v1
+  description: Production
+- url: https://api.staging.akutehealth.com/v1
+  description: Staging
+security:
+- APIKeyHeader: []
+tags:
+- name: Tasks
+paths:
+  /tasks:
+    post:
+      operationId: createTask
+      tags:
+      - Tasks
+      summary: Create a task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: Created
+    get:
+      operationId: searchTasks
+      tags:
+      - Tasks
+      summary: Search tasks
+      parameters:
+      - name: patient_id
+        in: query
+        schema:
+          type: string
+      - name: external_patient_id
+        in: query
+        schema:
+          type: string
+      - name: owner_id
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - not-started
+            - in-progress
+            - completed
+      - name: priority
+        in: query
+        schema:
+          type: string
+          enum:
+          - p1
+          - p2
+          - p3
+      - name: due_date
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: archived
+        in: query
+        schema:
+          type: boolean
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /tasks/{task_id}:
+    get:
+      operationId: getTask
+      tags:
+      - Tasks
+      summary: Get a task by id
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      operationId: updateTask
+      tags:
+      - Tasks
+      summary: Update a task
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Task:
+      type: object
+      required:
+      - task
+      properties:
+        id:
+          type: string
+        task:
+          type: string
+        description:
+          type: string
+        due_date:
+          type: string
+          format: date
+        owner_id:
+          type: string
+        patient_id:
+          type: string
+        priority:
+          type: string
+          enum:
+          - p1
+          - p2
+          - p3
+        status:
+          type: string
+          enum:
+          - not-started
+          - in-progress
+          - completed
+        tags:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key created on the Settings -> Developer page in Akute. Required on every request.
