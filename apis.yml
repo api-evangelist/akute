@@ -9,7 +9,20 @@ description: Akute Health is an automation-first, API- and developer-friendly EH
   documents, medications and e-prescribing, lab orders and results, plus signed
   webhooks - so customers can enrich the record and build patient-facing or
   internal applications.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/akute.png
 tags:
 - Healthcare
 - EHR
@@ -21,145 +34,150 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: akute:patients
-  name: Akute Patients API
-  tags:
-  - Patients
-  - Demographics
-  - FHIR
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: akute:akute-appointments-api
+  name: Akute Health Appointments API
+  description: The Appointments API from Akute Health — 4 operation(s) for appointments.
   humanURL: https://developer.akutehealth.com/
   baseURL: https://api.akutehealth.com/v1
-  properties:
-  - url: https://developer.akutehealth.com/
-    type: Documentation
-  - url: https://developer.akutehealth.com/
-    type: APIReference
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Create, update, retrieve, and search patient records by internal id
-    or external_id, including demographics, contact details, and external id
-    mapping for synchronizing patients between systems.
-- aid: akute:appointments
-  name: Akute Appointments API
   tags:
   - Appointments
-  - Scheduling
-  - Availability
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/akute-appointments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
+- aid: akute:akute-documents-api
+  name: Akute Health Documents API
+  description: The Documents API from Akute Health — 2 operation(s) for documents.
   humanURL: https://developer.akutehealth.com/
   baseURL: https://api.akutehealth.com/v1
-  properties:
-  - url: https://developer.akutehealth.com/
-    type: Documentation
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Book, update, cancel, and search appointments, list appointment types,
-    and query practitioner availability windows for scheduling across the practice.
-- aid: akute:encounters
-  name: Akute Encounters API
-  tags:
-  - Encounters
-  - Clinical Notes
-  - Documentation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.akutehealth.com/
-  baseURL: https://api.akutehealth.com/v1
-  properties:
-  - url: https://developer.akutehealth.com/
-    type: Documentation
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Create and retrieve clinical encounter documentation as structured,
-    multi-section notes (progress notes, phone notes, SOAP) with authors, signing
-    user, service date, and final or preliminary status.
-- aid: akute:tasks
-  name: Akute Tasks API
-  tags:
-  - Tasks
-  - Workflow
-  - Care Coordination
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.akutehealth.com/
-  baseURL: https://api.akutehealth.com/v1
-  properties:
-  - url: https://developer.akutehealth.com/
-    type: Documentation
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Create, update, retrieve, and search care-team tasks with owner,
-    patient, priority, status, tags, and due-date ranges to coordinate clinical
-    and administrative workflow.
-- aid: akute:documents
-  name: Akute Documents API
   tags:
   - Documents
-  - Files
-  - Attachments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/akute-documents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
+- aid: akute:akute-encounters-api
+  name: Akute Health Encounters API
+  description: The Encounters API from Akute Health — 2 operation(s) for encounters.
   humanURL: https://developer.akutehealth.com/
   baseURL: https://api.akutehealth.com/v1
-  properties:
-  - url: https://developer.akutehealth.com/
-    type: Documentation
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Upload, retrieve, and search documents and file attachments,
-    optionally associated with a patient, supporting PDF report storage and
-    paginated, sortable listing.
-- aid: akute:medications
-  name: Akute Medications API
   tags:
-  - Medications
-  - e-Prescribing
-  - Pharmacy
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Encounters
+  properties:
+  - type: OpenAPI
+    url: openapi/akute-encounters-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
+- aid: akute:akute-labs-api
+  name: Akute Health Labs API
+  description: The Labs API from Akute Health — 11 operation(s) for labs.
   humanURL: https://developer.akutehealth.com/
   baseURL: https://api.akutehealth.com/v1
-  properties:
-  - url: https://developer.akutehealth.com/
-    type: Documentation
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Search the drug catalog, retrieve patient medications and Surescripts
-    medication history (live or cached), look up dispensable drugs and pharmacies,
-    and manage patient pharmacies for e-prescribing.
-- aid: akute:labs
-  name: Akute Labs API
   tags:
   - Labs
-  - Orders
-  - Diagnostic Reports
-  - Observations
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://help.akutehealth.com/article/196-ordering-labs-via-api
-  baseURL: https://api.akutehealth.com/v1
   properties:
-  - url: https://help.akutehealth.com/article/196-ordering-labs-via-api
-    type: Documentation
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Search lab procedures and facilities, place lab orders, track order
-    requests, and retrieve diagnostic reports and individual lab and vital-sign
-    observations, including report PDFs.
-- aid: akute:webhooks
-  name: Akute Webhooks API
+  - type: OpenAPI
+    url: openapi/akute-labs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
+- aid: akute:akute-medications-api
+  name: Akute Health Medications API
+  description: The Medications API from Akute Health — 4 operation(s) for medications.
+  humanURL: https://developer.akutehealth.com/
+  baseURL: https://api.akutehealth.com/v1
+  tags:
+  - Medications
+  properties:
+  - type: OpenAPI
+    url: openapi/akute-medications-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
+- aid: akute:akute-patients-api
+  name: Akute Health Patients API
+  description: The Patients API from Akute Health — 3 operation(s) for patients.
+  humanURL: https://developer.akutehealth.com/
+  baseURL: https://api.akutehealth.com/v1
+  tags:
+  - Patients
+  properties:
+  - type: OpenAPI
+    url: openapi/akute-patients-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
+- aid: akute:akute-tasks-api
+  name: Akute Health Tasks API
+  description: The Tasks API from Akute Health — 2 operation(s) for tasks.
+  humanURL: https://developer.akutehealth.com/
+  baseURL: https://api.akutehealth.com/v1
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/akute-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
+- aid: akute:akute-webhooks-api
+  name: Akute Health Webhooks API
+  description: The Webhooks API from Akute Health — 2 operation(s) for webhooks.
+  humanURL: https://developer.akutehealth.com/
+  baseURL: https://api.akutehealth.com/v1
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://help.akutehealth.com/article/212-supported-webhooks
-  baseURL: https://api.akutehealth.com/v1
   properties:
-  - url: https://help.akutehealth.com/article/212-supported-webhooks
-    type: Documentation
-  - url: openapi/akute-openapi.yml
-    type: OpenAPI
-  description: Register and manage webhook subscriptions for resource events
-    (patients, appointments, notes, tasks, medications, diagnostic reports,
-    orders, faxes, conversations) with HMAC-SHA256 signed delivery via the
-    x-akute-signature header.
+  - type: OpenAPI
+    url: openapi/akute-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.akutehealth.com/
+  - type: APIReference
+    url: https://developer.akutehealth.com/
+  - type: Documentation
+    url: https://help.akutehealth.com/article/196-ordering-labs-via-api
+  - type: Documentation
+    url: https://help.akutehealth.com/article/212-supported-webhooks
 common:
 - type: AgenticAccess
   url: agentic-access/akute-agentic-access.yml
