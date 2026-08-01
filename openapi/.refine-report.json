@@ -1,0 +1,28 @@
+{
+  "provider": "akute",
+  "sources": [
+    "akute-appointments-api-openapi.yml",
+    "akute-documents-api-openapi.yml",
+    "akute-encounters-api-openapi.yml",
+    "akute-labs-api-openapi.yml",
+    "akute-medications-api-openapi.yml",
+    "akute-patients-api-openapi.yml",
+    "akute-tasks-api-openapi.yml",
+    "akute-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "akute-appointments-api-openapi.yml",
+    "akute-documents-api-openapi.yml",
+    "akute-encounters-api-openapi.yml",
+    "akute-labs-api-openapi.yml",
+    "akute-medications-api-openapi.yml",
+    "akute-patients-api-openapi.yml",
+    "akute-tasks-api-openapi.yml",
+    "akute-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
