@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Akute Health Customer Appointments Medications API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Medications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search medications or list a patient's medications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_term",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search medications or list a patient's medications"
+        },
+        {
+          "info": {
+            "name": "Look up a dispensable drug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications/select",
+            "params": [
+              {
+                "name": "dispensable_drug_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Look up a dispensable drug"
+        },
+        {
+          "info": {
+            "name": "Retrieve Surescripts medication history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications/history",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prescriber_user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve Surescripts medication history"
+        },
+        {
+          "info": {
+            "name": "Retrieve cached medication history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/medications/history/cached",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_patient_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve cached medication history"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

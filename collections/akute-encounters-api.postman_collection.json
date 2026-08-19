@@ -1,0 +1,341 @@
+{
+  "item": [
+    {
+      "id": "1b426866-4c70-4168-b6c5-7df81a79a11a",
+      "name": "Encounters",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0e7aad6-9c66-4a41-9fb8-f287e704bd28",
+          "name": "Create a clinical note (encounter)",
+          "request": {
+            "name": "Create a clinical note (encounter)",
+            "description": {},
+            "url": {
+              "path": [
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"authors\": [\n    {\n      \"user_id\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\"\n    }\n  ],\n  \"sections\": [\n    {\n      \"title\": \"<string>\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"external_patient_id\": \"<string>\",\n  \"service_date\": \"<date>\",\n  \"status\": \"<string>\",\n  \"signed\": {\n    \"user_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a71ae24b-1611-40d7-bbf1-a8416bdd0def",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"authors\": [\n    {\n      \"user_id\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\"\n    }\n  ],\n  \"sections\": [\n    {\n      \"title\": \"<string>\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"external_patient_id\": \"<string>\",\n  \"service_date\": \"<date>\",\n  \"status\": \"<string>\",\n  \"signed\": {\n    \"user_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee2c0ed0-ed1b-4262-a457-6e9316d23c35",
+          "name": "Search clinical notes",
+          "request": {
+            "name": "Search clinical notes",
+            "description": {},
+            "url": {
+              "path": [
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patient_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_patient_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "service_date_start",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e2c799f-e5c0-4c75-a7bb-bbde06615853",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_patient_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service_date_start",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe78185a-5188-46b7-992f-c5754400b12b",
+          "name": "Get a clinical note by id",
+          "request": {
+            "name": "Get a clinical note by id",
+            "description": {},
+            "url": {
+              "path": [
+                "notes",
+                ":note_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "note_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae5dce13-0974-40e1-812e-0ccccab0244a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes",
+                    ":note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "note_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.akutehealth.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fbcc914e-a2fa-4910-9c4a-a743555a12cb",
+    "name": "Akute Health Customer Appointments Encounters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.\n\nContact Support:\n Name: Akute Health Support\n Email: support@akutehealth.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Akute Health Customer Appointments Labs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Labs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search lab procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/procedures",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "performer_organization_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search lab procedures"
+        },
+        {
+          "info": {
+            "name": "Search lab facilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/facilities",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "zipcode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "distance",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search lab facilities"
+        },
+        {
+          "info": {
+            "name": "Search lab orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/orders",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "authoring_user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date_range",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search lab orders"
+        },
+        {
+          "info": {
+            "name": "Create a lab order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a lab order"
+        },
+        {
+          "info": {
+            "name": "Get a lab order by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/orders/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a lab order by id"
+        },
+        {
+          "info": {
+            "name": "Get a lab order request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/orders/requests/:order_request_id",
+            "params": [
+              {
+                "name": "order_request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a lab order request status"
+        },
+        {
+          "info": {
+            "name": "Get a lab order requisition PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/orders/:order_id/pdf",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a lab order requisition PDF"
+        },
+        {
+          "info": {
+            "name": "Search diagnostic reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/diagnosticreport",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date_range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search diagnostic reports"
+        },
+        {
+          "info": {
+            "name": "Get a diagnostic report by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/diagnosticreport/:diagnostic_report_id",
+            "params": [
+              {
+                "name": "diagnostic_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a diagnostic report by id"
+        },
+        {
+          "info": {
+            "name": "Update a diagnostic report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.akutehealth.com/v1/diagnosticreport/:diagnostic_report_id",
+            "params": [
+              {
+                "name": "diagnostic_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a diagnostic report"
+        },
+        {
+          "info": {
+            "name": "Get a diagnostic report PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/diagnosticreport/:diagnostic_report_id/pdf",
+            "params": [
+              {
+                "name": "diagnostic_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a diagnostic report PDF"
+        },
+        {
+          "info": {
+            "name": "Search observations (lab results, vital signs)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/observations",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_patient_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "diagnostic_report_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search observations (lab results, vital signs)"
+        },
+        {
+          "info": {
+            "name": "Get an observation by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/observations/:observation_id",
+            "params": [
+              {
+                "name": "observation_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an observation by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

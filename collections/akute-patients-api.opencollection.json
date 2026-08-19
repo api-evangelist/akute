@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Akute Health Customer Appointments Patients API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/patients",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "middle_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_of_birth",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sex",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "primary_phone_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search patients by demographics, contact details, or external_id. Returns a paginated list."
+        },
+        {
+          "info": {
+            "name": "Create a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akutehealth.com/v1/patients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a patient"
+        },
+        {
+          "info": {
+            "name": "Get a patient by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/patients/:patient_id",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a patient by id"
+        },
+        {
+          "info": {
+            "name": "Update a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.akutehealth.com/v1/patients/:patient_id",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a patient"
+        },
+        {
+          "info": {
+            "name": "Get a patient's external ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.akutehealth.com/v1/patients/:patient_id/external_ids",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a patient's external ids"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

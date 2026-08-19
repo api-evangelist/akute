@@ -1,0 +1,616 @@
+{
+  "item": [
+    {
+      "id": "85e00fd2-9a5a-43d3-8add-2dfd6d759602",
+      "name": "Patients",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d3204e4-d2c0-44cc-ad7d-291cae824023",
+          "name": "Create a patient",
+          "request": {
+            "name": "Create a patient",
+            "description": {},
+            "url": {
+              "path": [
+                "patients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex\": \"<string>\",\n  \"status\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"middle_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"primary_phone_number\": \"<string>\",\n  \"primary_phone_type\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"address_city\": \"<string>\",\n  \"address_state\": \"<string>\",\n  \"address_zipcode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "949bc87b-9736-47d1-b3bd-419c21e46e65",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex\": \"<string>\",\n  \"status\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"middle_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"primary_phone_number\": \"<string>\",\n  \"primary_phone_type\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"address_city\": \"<string>\",\n  \"address_state\": \"<string>\",\n  \"address_zipcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"external_id\": \"string\",\n  \"first_name\": \"string\",\n  \"middle_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"1977-08-23\",\n  \"sex\": \"male\",\n  \"status\": \"inactive\",\n  \"email\": \"pPQ@FqkxXLzs.pm\",\n  \"primary_phone_number\": \"string\",\n  \"primary_phone_type\": \"home\",\n  \"address_line_1\": \"string\",\n  \"address_line_2\": \"string\",\n  \"address_city\": \"string\",\n  \"address_state\": \"string\",\n  \"address_zipcode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8d2ef09-3e2f-4aa4-aee2-d371cb7c6aca",
+          "name": "Search patients",
+          "request": {
+            "name": "Search patients",
+            "description": {
+              "content": "Search patients by demographics, contact details, or external_id. Returns a paginated list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "external_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "middle_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_of_birth",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sex",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "disabled": false,
+                  "key": "primary_phone_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a8db1d2-7937-4806-a70b-b45e594b1891",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "external_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "middle_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_of_birth",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "sex",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "primary_phone_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"external_id\": \"string\",\n    \"first_name\": \"string\",\n    \"middle_name\": \"string\",\n    \"last_name\": \"string\",\n    \"date_of_birth\": \"2024-03-02\",\n    \"sex\": \"female\",\n    \"status\": \"active\",\n    \"email\": \"DIaTO6Fb@toPdFYbuaqbMN.ln\",\n    \"primary_phone_number\": \"string\",\n    \"primary_phone_type\": \"home\",\n    \"address_line_1\": \"string\",\n    \"address_line_2\": \"string\",\n    \"address_city\": \"string\",\n    \"address_state\": \"string\",\n    \"address_zipcode\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"external_id\": \"string\",\n    \"first_name\": \"string\",\n    \"middle_name\": \"string\",\n    \"last_name\": \"string\",\n    \"date_of_birth\": \"2007-05-09\",\n    \"sex\": \"male\",\n    \"status\": \"active\",\n    \"email\": \"2Bz9TEd4FvJ@vbPY.wyfl\",\n    \"primary_phone_number\": \"string\",\n    \"primary_phone_type\": \"work\",\n    \"address_line_1\": \"string\",\n    \"address_line_2\": \"string\",\n    \"address_city\": \"string\",\n    \"address_state\": \"string\",\n    \"address_zipcode\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d561229a-bf74-4a45-ad9a-0ceb26923cd9",
+          "name": "Get a patient by id",
+          "request": {
+            "name": "Get a patient by id",
+            "description": {},
+            "url": {
+              "path": [
+                "patients",
+                ":patient_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c31329b-668d-4404-a594-161a8fd2f802",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patient_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"external_id\": \"string\",\n  \"first_name\": \"string\",\n  \"middle_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"1977-08-23\",\n  \"sex\": \"male\",\n  \"status\": \"inactive\",\n  \"email\": \"pPQ@FqkxXLzs.pm\",\n  \"primary_phone_number\": \"string\",\n  \"primary_phone_type\": \"home\",\n  \"address_line_1\": \"string\",\n  \"address_line_2\": \"string\",\n  \"address_city\": \"string\",\n  \"address_state\": \"string\",\n  \"address_zipcode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1b224f4-3fe0-4163-8d0d-96e78e0a4695",
+          "name": "Update a patient",
+          "request": {
+            "name": "Update a patient",
+            "description": {},
+            "url": {
+              "path": [
+                "patients",
+                ":patient_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex\": \"<string>\",\n  \"status\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"middle_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"primary_phone_number\": \"<string>\",\n  \"primary_phone_type\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"address_city\": \"<string>\",\n  \"address_state\": \"<string>\",\n  \"address_zipcode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67111671-a821-4801-93c5-a09fa22a26c7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patient_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex\": \"<string>\",\n  \"status\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"middle_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"primary_phone_number\": \"<string>\",\n  \"primary_phone_type\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"address_city\": \"<string>\",\n  \"address_state\": \"<string>\",\n  \"address_zipcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"external_id\": \"string\",\n  \"first_name\": \"string\",\n  \"middle_name\": \"string\",\n  \"last_name\": \"string\",\n  \"date_of_birth\": \"1977-08-23\",\n  \"sex\": \"male\",\n  \"status\": \"inactive\",\n  \"email\": \"pPQ@FqkxXLzs.pm\",\n  \"primary_phone_number\": \"string\",\n  \"primary_phone_type\": \"home\",\n  \"address_line_1\": \"string\",\n  \"address_line_2\": \"string\",\n  \"address_city\": \"string\",\n  \"address_state\": \"string\",\n  \"address_zipcode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2771be7-c4e0-4d70-89d0-28474df93f5d",
+          "name": "Get a patient's external ids",
+          "request": {
+            "name": "Get a patient's external ids",
+            "description": {},
+            "url": {
+              "path": [
+                "patients",
+                ":patient_id",
+                "external_ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c70e883-4467-4aa1-9797-9fb36ff8094e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patient_id",
+                    "external_ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.akutehealth.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1987f055-ea8a-425f-ae69-05abb9b0dcaf",
+    "name": "Akute Health Customer Appointments Patients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Akute Health automation-first EHR platform. Exposes FHIR-aligned resources - patients, appointments, clinical notes (encounters), tasks, documents, medications and e-prescribing, lab orders, diagnostic reports and observations - plus webhook subscriptions for resource events. Authentication uses an API key passed in the X-API-Key header. Webhook deliveries are signed with HMAC-SHA256 in the x-akute-signature header.\n\nContact Support:\n Name: Akute Health Support\n Email: support@akutehealth.com",
+      "type": "text/plain"
+    }
+  }
+}
