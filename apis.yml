@@ -9,6 +9,18 @@ description: Akute Health is an automation-first, API- and developer-friendly EH
   documents, medications and e-prescribing, lab orders and results, plus signed
   webhooks - so customers can enrich the record and build patient-facing or
   internal applications.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
