@@ -19,34 +19,37 @@ edges:
   capability_id_l1: BC-2800
   capability_name: Scheduling & Appointment Management
   confidence: 0.95
-  evidence: POST /appointments createAppointment Create an appointment; GET /availability getAvailability
-    Get practitioner availability; GET /appointment_types listAppointmentTypes
-  reason: EHR platform endpoints book, reschedule, cancel appointments and expose practitioner availability
-    — plainly provider scheduling and appointment management.
+  evidence: '"Create an appointment", "Cancel/delete an appointment", "List appointment types", "Get practitioner
+    availability"'
+  reason: Booking, updating and cancelling patient appointments plus practitioner availability is squarely
+    provider scheduling and appointment management in an EHR context.
 - tag: Encounters
   spec_file: akute-encounters-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
   confidence: 0.9
-  evidence: POST /notes createNote 'Create a clinical note (encounter)'; schema 'Note'
-  reason: Operations author and retrieve clinical notes for encounters in an EHR — clinical note documentation.
+  evidence: '"Create a clinical note (encounter)", "Search clinical notes", schema Note'
+  reason: Authoring and retrieving clinical notes for encounters is clinical note documentation within
+    clinical documentation management.
 - tag: Patients
   spec_file: akute-patients-api-openapi.yml
   capability_id: BC-2800.20
   capability_id_l1: BC-2800
   capability_name: Patient Registration Management
-  confidence: 0.75
-  evidence: POST /patients 'Create a patient'; PUT /patients/{patient_id} 'Update a patient'; schema 'PatientCreate'
-  reason: CRUD over patient demographic/identity records with external id cross-reference matches patient
-    registration/demographic stewardship.
+  confidence: 0.8
+  evidence: '"Create a patient", "Update a patient", "Get a patient''s external ids", schemas Patient,
+    PatientCreate'
+  reason: Creation and stewardship of patient demographic/identity records is patient registration; some
+    ambiguity with master patient index given the external-id endpoint.
 - tag: Labs
   spec_file: akute-labs-api-openapi.yml
   capability_id: BC-2860.10
   capability_id_l1: BC-2860
   capability_name: Laboratory Services Management
-  confidence: 0.72
-  evidence: '''Search lab procedures'', ''Search lab facilities'', ''Create a lab order'', ''Search diagnostic
-    reports'', ''Search observations (lab results, vital signs)'''
-  reason: Surface covers laboratory ordering, lab facilities/procedures and diagnostic reports/results
-    — diagnostic services; L2 leans laboratory but also touches results management.
+  confidence: 0.7
+  evidence: '"Create a lab order", "Search lab facilities", "Get a lab order requisition PDF", "Search
+    observations (lab results, vital signs)"'
+  reason: Lab ordering, requisitions, diagnostic reports and observations are laboratory/diagnostic services
+    operations; the surface spans both ordering and results so the exact sub-capability is somewhat ambiguous
+    (laboratory services vs diagnostic results management).
