@@ -195,6 +195,9 @@ apis:
   - type: Documentation
     url: https://help.akutehealth.com/article/212-supported-webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/akute-capability-edges.yml
+  name: Akute Health Business Capability Map
 - type: AgenticAccess
   url: agentic-access/akute-agentic-access.yml
 - type: DomainSecurity

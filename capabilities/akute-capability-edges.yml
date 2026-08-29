@@ -1,0 +1,52 @@
+slug: akute
+provider: Akute Health
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Appointments
+  spec_file: akute-appointments-api-openapi.yml
+  capability_id: BC-2800.10
+  capability_id_l1: BC-2800
+  capability_name: Scheduling & Appointment Management
+  confidence: 0.95
+  evidence: POST /appointments createAppointment Create an appointment; GET /availability getAvailability
+    Get practitioner availability; GET /appointment_types listAppointmentTypes
+  reason: EHR platform endpoints book, reschedule, cancel appointments and expose practitioner availability
+    — plainly provider scheduling and appointment management.
+- tag: Encounters
+  spec_file: akute-encounters-api-openapi.yml
+  capability_id: BC-2830.10
+  capability_id_l1: BC-2830
+  capability_name: Clinical Note Documentation
+  confidence: 0.9
+  evidence: POST /notes createNote 'Create a clinical note (encounter)'; schema 'Note'
+  reason: Operations author and retrieve clinical notes for encounters in an EHR — clinical note documentation.
+- tag: Patients
+  spec_file: akute-patients-api-openapi.yml
+  capability_id: BC-2800.20
+  capability_id_l1: BC-2800
+  capability_name: Patient Registration Management
+  confidence: 0.75
+  evidence: POST /patients 'Create a patient'; PUT /patients/{patient_id} 'Update a patient'; schema 'PatientCreate'
+  reason: CRUD over patient demographic/identity records with external id cross-reference matches patient
+    registration/demographic stewardship.
+- tag: Labs
+  spec_file: akute-labs-api-openapi.yml
+  capability_id: BC-2860.10
+  capability_id_l1: BC-2860
+  capability_name: Laboratory Services Management
+  confidence: 0.72
+  evidence: '''Search lab procedures'', ''Search lab facilities'', ''Create a lab order'', ''Search diagnostic
+    reports'', ''Search observations (lab results, vital signs)'''
+  reason: Surface covers laboratory ordering, lab facilities/procedures and diagnostic reports/results
+    — diagnostic services; L2 leans laboratory but also touches results management.
