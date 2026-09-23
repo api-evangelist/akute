@@ -1,14 +1,7 @@
 {
   "provider": "akute",
   "sources": [
-    "akute-appointments-api-openapi.yml",
-    "akute-documents-api-openapi.yml",
-    "akute-encounters-api-openapi.yml",
-    "akute-labs-api-openapi.yml",
-    "akute-medications-api-openapi.yml",
-    "akute-patients-api-openapi.yml",
-    "akute-tasks-api-openapi.yml",
-    "akute-webhooks-api-openapi.yml"
+    "_original/akute-openapi.yml"
   ],
   "outputs": [
     "akute-appointments-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "akute-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "akute-appointments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "akute-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "akute-encounters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "akute-labs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "akute-medications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "akute-patients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "akute-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "akute-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
