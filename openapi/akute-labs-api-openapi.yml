@@ -287,14 +287,14 @@ paths:
           description: OK
 components:
   parameters:
-    DiagnosticReportId:
-      name: diagnostic_report_id
+    OrderId:
+      name: order_id
       in: path
       required: true
       schema:
         type: string
-    OrderId:
-      name: order_id
+    DiagnosticReportId:
+      name: diagnostic_report_id
       in: path
       required: true
       schema:
