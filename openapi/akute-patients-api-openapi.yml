@@ -157,11 +157,15 @@ paths:
           description: OK
 components:
   schemas:
-    Patient:
+    PatientCreate:
       type: object
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex
+      - status
       properties:
-        id:
-          type: string
         external_id:
           type: string
         first_name:
@@ -206,15 +210,11 @@ components:
           type: string
         address_zipcode:
           type: string
-    PatientCreate:
+    Patient:
       type: object
-      required:
-      - first_name
-      - last_name
-      - date_of_birth
-      - sex
-      - status
       properties:
+        id:
+          type: string
         external_id:
           type: string
         first_name:
