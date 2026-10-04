@@ -143,6 +143,13 @@ paths:
         '200':
           description: OK
 components:
+  parameters:
+    AppointmentId:
+      name: appointment_id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Appointment:
       type: object
@@ -172,13 +179,6 @@ components:
           - noshow
         description:
           type: string
-  parameters:
-    AppointmentId:
-      name: appointment_id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     APIKeyHeader:
       type: apiKey
