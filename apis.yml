@@ -41,6 +41,12 @@ x-docs-platform-confidence: high
 x-docs-platform-checked: 2026-09-17
 tags:
 - Healthcare
+- Electronic Health Records
+- FHIR
+- Digital Health
+- Telehealth
+tags_raw:
+- Healthcare
 - EHR
 - EMR
 - FHIR
