@@ -1,4 +1,4 @@
-# Akute Health (akute)
+# Akute Health
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,197 +66,130 @@
 
 Akute Health is an automation-first, API- and developer-friendly EHR (electronic health record) platform for digital health, telehealth, direct primary care, and GLP-1 weight-loss clinics. Its REST API at https://api.akutehealth.com/v1 exposes FHIR-aligned resources - patients, appointments, clinical notes, tasks, documents, medications and e-prescribing, lab orders and results, plus signed webhooks - so customers can enrich the record and build patient-facing or internal applications.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/akute/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/akute/refs/heads/main/apis.yml)
+**Areas:** Healthcare · Electronic Health Records · FHIR · Digital Health · Telehealth
 
-## Tags
+## Akute Health on APIs.io
 
-- Healthcare
-- EHR
-- EMR
-- FHIR
-- Digital Health
-- Telehealth
+Everything profiled for Akute Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/akute/](https://apis.io/providers/akute/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (8)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Akute Health Appointments API](https://apis.io/apis/akute/akute-appointments-api/) — The Appointments API from Akute Health — 4 operation(s) for appointments.
+- [Akute Health Documents API](https://apis.io/apis/akute/akute-documents-api/) — The Documents API from Akute Health — 2 operation(s) for documents.
+- [Akute Health Encounters API](https://apis.io/apis/akute/akute-encounters-api/) — The Encounters API from Akute Health — 2 operation(s) for encounters.
+- [Akute Health Labs API](https://apis.io/apis/akute/akute-labs-api/) — The Labs API from Akute Health — 11 operation(s) for labs.
+- [Akute Health Medications API](https://apis.io/apis/akute/akute-medications-api/) — The Medications API from Akute Health — 4 operation(s) for medications.
+- [Akute Health Patients API](https://apis.io/apis/akute/akute-patients-api/) — The Patients API from Akute Health — 3 operation(s) for patients.
+- [Akute Health Tasks API](https://apis.io/apis/akute/akute-tasks-api/) — The Tasks API from Akute Health — 2 operation(s) for tasks.
+- [Akute Health Webhooks API](https://apis.io/apis/akute/akute-webhooks-api/) — The Webhooks API from Akute Health — 2 operation(s) for webhooks.
 
-## APIs
+### Published properties
 
-### Akute Patients API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, update, retrieve, and search patient records by internal id or external_id, including demographics, contact details, and external id mapping for synchronizing patients between systems.
+#### Agentic access (1)
 
-- **Human URL:** [https://developer.akutehealth.com/](https://developer.akutehealth.com/)
-- **Base URL:** `https://api.akutehealth.com/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Akute Agentic Access](https://apis.io/agentic-access/akute/akute-agentic-access/)
 
-- Patients
-- Demographics
-- FHIR
+#### Collections (9)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developer.akutehealth.com/)
-- [API Reference](https://developer.akutehealth.com/)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Akute Health Customer API](https://apis.io/collections/akute/open-akute/)
+- [Akute Health Customer Appointments API](https://apis.io/collections/akute/open-akute-appointments-api/)
+- [Akute Health Customer Appointments Documents API](https://apis.io/collections/akute/open-akute-documents-api/)
+- [Akute Health Customer Appointments Encounters API](https://apis.io/collections/akute/open-akute-encounters-api/)
+- [Akute Health Customer Appointments Labs API](https://apis.io/collections/akute/open-akute-labs-api/)
+- [Akute Health Customer Appointments Medications API](https://apis.io/collections/akute/open-akute-medications-api/)
+- [Akute Health Customer Appointments Patients API](https://apis.io/collections/akute/open-akute-patients-api/)
+- [Akute Health Customer Appointments Tasks API](https://apis.io/collections/akute/open-akute-tasks-api/)
+- [Akute Health Customer Appointments Webhooks API](https://apis.io/collections/akute/open-akute-webhooks-api/)
 
-### Akute Appointments API
+#### Security (2)
 
-Book, update, cancel, and search appointments, list appointment types, and query practitioner availability windows for scheduling across the practice.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://developer.akutehealth.com/](https://developer.akutehealth.com/)
-- **Base URL:** `https://api.akutehealth.com/v1`
+- [Akute Authentication](https://apis.io/security/akute/akute-authentication/)
+- [Akute Domain Security](https://apis.io/security/akute/akute-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Appointments
-- Scheduling
-- Availability
+Published plans, tiers and prices.
 
-#### Properties
+- [Akute Plans Pricing](https://apis.io/plans/akute/akute-plans-pricing/)
 
-- [Documentation](https://developer.akutehealth.com/)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Akute Encounters API
+Published request limits.
 
-Create and retrieve clinical encounter documentation as structured, multi-section notes (progress notes, phone notes, SOAP) with authors, signing user, service date, and final or preliminary status.
+- [Akute Rate Limits](https://apis.io/rate-limits/akute/akute-rate-limits/)
 
-- **Human URL:** [https://developer.akutehealth.com/](https://developer.akutehealth.com/)
-- **Base URL:** `https://api.akutehealth.com/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Encounters
-- Clinical Notes
-- Documentation
+- [Akute Finops](https://apis.io/finops/akute/akute-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://developer.akutehealth.com/)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Akute Tasks API
-
-Create, update, retrieve, and search care-team tasks with owner, patient, priority, status, tags, and due-date ranges to coordinate clinical and administrative workflow.
-
-- **Human URL:** [https://developer.akutehealth.com/](https://developer.akutehealth.com/)
-- **Base URL:** `https://api.akutehealth.com/v1`
-
-#### Tags
-
-- Tasks
-- Workflow
-- Care Coordination
-
-#### Properties
-
-- [Documentation](https://developer.akutehealth.com/)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Akute Documents API
-
-Upload, retrieve, and search documents and file attachments, optionally associated with a patient, supporting PDF report storage and paginated, sortable listing.
-
-- **Human URL:** [https://developer.akutehealth.com/](https://developer.akutehealth.com/)
-- **Base URL:** `https://api.akutehealth.com/v1`
-
-#### Tags
-
-- Documents
-- Files
-- Attachments
-
-#### Properties
-
-- [Documentation](https://developer.akutehealth.com/)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Akute Medications API
-
-Search the drug catalog, retrieve patient medications and Surescripts medication history (live or cached), look up dispensable drugs and pharmacies, and manage patient pharmacies for e-prescribing.
-
-- **Human URL:** [https://developer.akutehealth.com/](https://developer.akutehealth.com/)
-- **Base URL:** `https://api.akutehealth.com/v1`
-
-#### Tags
-
-- Medications
-- e-Prescribing
-- Pharmacy
-
-#### Properties
-
-- [Documentation](https://developer.akutehealth.com/)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Akute Labs API
-
-Search lab procedures and facilities, place lab orders, track order requests, and retrieve diagnostic reports and individual lab and vital-sign observations, including report PDFs.
-
-- **Human URL:** [https://help.akutehealth.com/article/196-ordering-labs-via-api](https://help.akutehealth.com/article/196-ordering-labs-via-api)
-- **Base URL:** `https://api.akutehealth.com/v1`
-
-#### Tags
-
-- Labs
-- Orders
-- Diagnostic Reports
-- Observations
-
-#### Properties
-
-- [Documentation](https://help.akutehealth.com/article/196-ordering-labs-via-api)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Akute Webhooks API
-
-Register and manage webhook subscriptions for resource events (patients, appointments, notes, tasks, medications, diagnostic reports, orders, faxes, conversations) with HMAC-SHA256 signed delivery via the x-akute-signature header.
-
-- **Human URL:** [https://help.akutehealth.com/article/212-supported-webhooks](https://help.akutehealth.com/article/212-supported-webhooks)
-- **Base URL:** `https://api.akutehealth.com/v1`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://help.akutehealth.com/article/212-supported-webhooks)
-- [OpenAPI](openapi/akute-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/akute.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/akute.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/akute-health-inc)
-- [LinkedIn](https://www.linkedin.com/company/akute-health)
 - [Website](https://www.akutehealth.com/)
 - [Documentation](https://developer.akutehealth.com/)
-- [Plans](plans/akute-plans-pricing.yml)
-- [Rate Limits](rate-limits/akute-rate-limits.yml)
-- [Fin Ops](finops/akute-finops.yml)
+- [Blog](https://akutehealth.com/blog)
+- [GitHub](https://github.com/akute-health-inc)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 9.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/akute/](https://apis.io/providers/akute/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Akute Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/akute/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
